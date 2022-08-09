@@ -1,4 +1,4 @@
-package com.samucatezu.pimbackend.registration.token;
+package com.samucatezu.pimbackend.registration.token.Confirmation;
 
 import com.samucatezu.pimbackend.appuser.AppUser;
 import lombok.Getter;
