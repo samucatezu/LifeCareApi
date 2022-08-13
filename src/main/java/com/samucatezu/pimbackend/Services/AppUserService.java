@@ -1,8 +1,10 @@
-package com.samucatezu.pimbackend.appuser;
+package com.samucatezu.pimbackend.Services;
 
 
-import com.samucatezu.pimbackend.registration.token.Confirmation.ConfirmationToken;
-import com.samucatezu.pimbackend.registration.token.Confirmation.ConfirmationTokenService;
+import com.samucatezu.pimbackend.Model.AppUser;
+import com.samucatezu.pimbackend.Repository.AppUserRepository;
+import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationToken;
+import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationTokenService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

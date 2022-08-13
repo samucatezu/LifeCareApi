@@ -1,11 +1,11 @@
 package com.samucatezu.pimbackend.registration;
 
-import com.samucatezu.pimbackend.appuser.AppUser;
-import com.samucatezu.pimbackend.appuser.AppUserRole;
-import com.samucatezu.pimbackend.appuser.AppUserService;
+import com.samucatezu.pimbackend.Model.AppUser;
+import com.samucatezu.pimbackend.Roles.AppUserRole;
+import com.samucatezu.pimbackend.Services.AppUserService;
 import com.samucatezu.pimbackend.email.EmailSender;
-import com.samucatezu.pimbackend.registration.token.Confirmation.ConfirmationToken;
-import com.samucatezu.pimbackend.registration.token.Confirmation.ConfirmationTokenService;
+import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationToken;
+import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

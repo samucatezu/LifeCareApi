@@ -1,4 +1,4 @@
-package com.samucatezu.pimbackend.appuser;
+package com.samucatezu.pimbackend.Roles;
 
 public enum AppUserRole {
     USER,

@@ -1,4 +1,4 @@
-package com.samucatezu.pimbackend.registration.token.Confirmation;
+package com.samucatezu.pimbackend.registration.Confirmation;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

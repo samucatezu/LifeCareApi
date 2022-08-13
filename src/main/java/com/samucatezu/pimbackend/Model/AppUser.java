@@ -1,5 +1,6 @@
-package com.samucatezu.pimbackend.appuser;
+package com.samucatezu.pimbackend.Model;
 
+import com.samucatezu.pimbackend.Roles.AppUserRole;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

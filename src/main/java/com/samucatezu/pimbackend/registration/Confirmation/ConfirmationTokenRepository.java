@@ -1,4 +1,4 @@
-package com.samucatezu.pimbackend.registration.token.Confirmation;
+package com.samucatezu.pimbackend.registration.Confirmation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
