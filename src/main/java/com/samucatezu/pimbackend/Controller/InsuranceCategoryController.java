@@ -1,8 +1,8 @@
 package com.samucatezu.pimbackend.Controller;
 
 import com.samucatezu.pimbackend.Common.ApiResponse;
-import com.samucatezu.pimbackend.Model.SecurityCategory;
-import com.samucatezu.pimbackend.Services.SecurityCategoryService;
+import com.samucatezu.pimbackend.Model.Category;
+import com.samucatezu.pimbackend.Services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,32 +19,32 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/SecurityCategory")
-public class SecurityCategoryController {
+public class InsuranceCategoryController {
     @Autowired
-    private SecurityCategoryService securitycategoryService;
+    private CategoryService securitycategoryService;
 
     @GetMapping("/")
-    public ResponseEntity<List<SecurityCategory>> getCategories() {
-        List<SecurityCategory> body = securitycategoryService.listCategories();
+    public ResponseEntity<List<Category>> getCategories() {
+        List<Category> body = securitycategoryService.listInsuranceCategories();
         return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody SecurityCategory securityCategory) {
-        if (Objects.nonNull(securitycategoryService.readCategory(securityCategory.getCategoryName()))) {
+    public ResponseEntity<ApiResponse> createCategory(@Valid @RequestBody Category category) {
+        if (Objects.nonNull(securitycategoryService.readCategory(category.getCategoryName()))) {
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category already exists"), HttpStatus.CONFLICT);
         }
-        securitycategoryService.createCategory(securityCategory);
+        securitycategoryService.createInsuranceCategory(category);
         return new ResponseEntity<>(new ApiResponse(true, "created the category"), HttpStatus.CREATED);
     }
 
 
     @PostMapping("/update/{categoryID}")
-    public ResponseEntity<ApiResponse> updateCategory(@PathVariable("categoryID") Integer categoryID, @Valid @RequestBody SecurityCategory securityCategory) {
+    public ResponseEntity<ApiResponse> updateCategory(@PathVariable("categoryID") Integer categoryID, @Valid @RequestBody Category category) {
         // Check to see if the category exists.
         if (Objects.nonNull(securitycategoryService.readCategory(categoryID))) {
             // If the category exists then update it.
-            securitycategoryService.updateCategory(categoryID, securityCategory);
+            securitycategoryService.updateInsuranceCategory(categoryID, category);
             return new ResponseEntity<ApiResponse>(new ApiResponse(true, "updated the category"), HttpStatus.OK);
         }
 
