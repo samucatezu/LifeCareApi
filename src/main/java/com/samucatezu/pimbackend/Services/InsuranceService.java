@@ -46,7 +46,7 @@ public class InsuranceService {
     }
 
     // update a product
-    public void updateInsurance(Integer insuranceID, InsuranceDTO insuranceDTO, Category category) {
+    public void updateInsurance(Long insuranceID, InsuranceDTO insuranceDTO, Category category) {
         Insurance insurance = getInsuranceFromDto(insuranceDTO, category);
         // set the id for updating
         insurance.setId(insuranceID);

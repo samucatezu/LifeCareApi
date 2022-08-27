@@ -1,17 +1,15 @@
 package com.samucatezu.pimbackend.registration;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 public class RegistrationRequest {
-    private final String firstName;
-    private final String lastName;
-    private final String email;
-    private final String password;
+    private  String firstName;
+    private  String lastName;
+    private  String email;
+    private  String password;
 }

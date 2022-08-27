@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "category_name")
     private @NotBlank String categoryName;
@@ -26,10 +26,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(@NotBlank String categoryName, @NotBlank String description) {
-        this.categoryName = categoryName;
-        this.description = description;
-    }
+
 
     public Category(@NotBlank String categoryName, @NotBlank String description, @NotBlank String imageUrl) {
         this.categoryName = categoryName;
@@ -66,11 +63,11 @@ public class Category {
         this.imageUrl = imageUrl;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

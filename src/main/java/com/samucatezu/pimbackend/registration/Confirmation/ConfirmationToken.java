@@ -1,6 +1,6 @@
 package com.samucatezu.pimbackend.registration.Confirmation;
 
-import com.samucatezu.pimbackend.Model.AppUser;
+import com.samucatezu.pimbackend.Model.AppUserDetails;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,15 +42,15 @@ public class ConfirmationToken {
             nullable = false,
             name = "app_user_id"
     )
-    private AppUser appUser;
+    private AppUserDetails AppUserDetails;
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
                              LocalDateTime expiresAt,
-                             AppUser appUser) {
+                             AppUserDetails AppUserDetails) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
-        this.appUser = appUser;
+        this.AppUserDetails = AppUserDetails;
     }
 }

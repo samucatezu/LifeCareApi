@@ -1,8 +1,8 @@
 package com.samucatezu.pimbackend.registration;
 
-import com.samucatezu.pimbackend.Model.AppUser;
+import com.samucatezu.pimbackend.Model.AppUserDetails;
 import com.samucatezu.pimbackend.Roles.AppUserRole;
-import com.samucatezu.pimbackend.Services.AppUserService;
+import com.samucatezu.pimbackend.Services.AppUserDetailsService;
 import com.samucatezu.pimbackend.email.EmailSender;
 import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationToken;
 import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationTokenService;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RegistrationService {
 
-    private final AppUserService appUserService;
+    private final AppUserDetailsService appUserDetailsService;
     private final EmailValidator emailValidator;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
@@ -29,8 +29,8 @@ public class RegistrationService {
             throw new IllegalStateException("email not valid");
         }
 
-        String token = appUserService.signUpUser(
-                new AppUser(
+        String token = appUserDetailsService.signUpUser(
+                new AppUserDetails(
                         request.getFirstName(),
                         request.getLastName(),
                         request.getEmail(),
@@ -66,8 +66,8 @@ public class RegistrationService {
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        appUserService.enableAppUser(
-                confirmationToken.getAppUser().getEmail());
+        appUserDetailsService.enableAppUser(
+                confirmationToken.getAppUserDetails().getEmail());
         return "confirmed";
     }
 

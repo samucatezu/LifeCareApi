@@ -1,6 +1,6 @@
 package com.samucatezu.pimbackend.security.config;
 
-import com.samucatezu.pimbackend.Services.AppUserService;
+import com.samucatezu.pimbackend.Services.AppUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AppUserService appUserService;
+    private final AppUserDetailsService appUserDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -26,8 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers( "/api/usuarios/**").permitAll()
-                .antMatchers("/api/v*/registration/**")
-                .permitAll()
+                .antMatchers( "/insurance/**").permitAll()
+                .antMatchers( "/SecurityCategory/**").permitAll()
+                .antMatchers("/api/v*/registration/**").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();
@@ -43,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(appUserService);
+        provider.setUserDetailsService(appUserDetailsService);
         return provider;
     }
 

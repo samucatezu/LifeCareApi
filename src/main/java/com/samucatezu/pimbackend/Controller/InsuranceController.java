@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -30,26 +31,21 @@ public class InsuranceController {
 
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addInsurance(@RequestBody InsuranceDTO insuranceDTO) {
-        Optional<Category> optionalCategory = categoryService.readCategory(insuranceDTO.getCategoryId());
-        if (!optionalCategory.isPresent()) {
-            return new ResponseEntity<>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
-        }
-        Category insurance = optionalCategory.get();
-        insuranceService.addInsurance(insuranceDTO, insurance);
-        return new ResponseEntity<>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
+       try {
+           Category insuranceCategory = categoryService.readCategory(insuranceDTO.getCategoryId());
+           insuranceService.addInsurance(insuranceDTO, insuranceCategory);
+           return new ResponseEntity<>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
+       } catch(EntityNotFoundException e){ return new ResponseEntity<>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);}
     }
 
     // update a product
     @PostMapping("/update/{insuranceID}")
-    public ResponseEntity<ApiResponse> updateInsurance(@PathVariable("insuranceID") Integer insuranceID,
-                                                     @RequestBody @Valid InsuranceDTO insuranceDTO) {
-        Optional<Category> optionalCategory = categoryService.readCategory(insuranceDTO.getCategoryId());
-        if (!optionalCategory.isPresent()) {
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
-        }
-        Category category = optionalCategory.get();
-        insuranceService.updateInsurance(insuranceID, insuranceDTO, category);
+    public ResponseEntity<ApiResponse> updateInsurance(@PathVariable("insuranceID") Long insuranceID, @RequestBody @Valid InsuranceDTO insuranceDTO) {
+        try {
+        Category insuranceCategory = categoryService.readCategory(insuranceDTO.getCategoryId());
+        insuranceService.updateInsurance(insuranceID, insuranceDTO, insuranceCategory);
         return new ResponseEntity<>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
+        } catch(EntityNotFoundException e){ return new ResponseEntity<>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);}
     }
 
     // list all the products
