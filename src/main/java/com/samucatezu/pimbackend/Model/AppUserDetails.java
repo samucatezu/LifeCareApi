@@ -1,5 +1,7 @@
 package com.samucatezu.pimbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.samucatezu.pimbackend.Roles.AppUserRole;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +16,7 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Table(name = "appUserDetails")
 public class AppUserDetails implements UserDetails {
 
 
@@ -28,6 +31,12 @@ public class AppUserDetails implements UserDetails {
             generator = "student_sequence"
     )
     private Long id;
+
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "appUserDetails")
+//    @MapsId
+//    @JoinColumn(name = "appUser_id")
+//    private AppUser appUser;
     private String firstName;
     private String lastName;
     private String email;

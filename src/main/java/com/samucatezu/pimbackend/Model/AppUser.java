@@ -1,5 +1,6 @@
 package com.samucatezu.pimbackend.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -9,16 +10,16 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "appUser")
 public class AppUser {
 
     @Id
     @GeneratedValue( strategy= GenerationType.AUTO )
     private Long id;
 
-    @OneToOne
-    private AppUserDetails AppUserDetails;
 
-    @CPF
+
+//    @CPF
     @Column(nullable = true)
     private String cpf;
 

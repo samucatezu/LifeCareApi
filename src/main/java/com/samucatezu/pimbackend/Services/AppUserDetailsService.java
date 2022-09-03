@@ -1,12 +1,14 @@
 package com.samucatezu.pimbackend.Services;
 
 
+import com.samucatezu.pimbackend.Model.AppUser;
 import com.samucatezu.pimbackend.Model.AppUserDetails;
 import com.samucatezu.pimbackend.Repository.AppUserDetailsRepository;
 import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationToken;
 import com.samucatezu.pimbackend.registration.Confirmation.ConfirmationTokenService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 @Service
 @AllArgsConstructor
@@ -21,7 +24,7 @@ public class AppUserDetailsService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
-
+    @Autowired
     private final AppUserDetailsRepository appUserDetailsRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
@@ -34,6 +37,10 @@ public class AppUserDetailsService implements UserDetailsService {
                         new UsernameNotFoundException(
                                 String.format(USER_NOT_FOUND_MSG, email)));
     }
+
+
+
+    public List<AppUserDetails> listAppUsers() { return appUserDetailsRepository.findAll(); }
 
     public String signUpUser(AppUserDetails AppUserDetails) {
         boolean userExists = appUserDetailsRepository
