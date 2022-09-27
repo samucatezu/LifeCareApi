@@ -1,49 +1,54 @@
 package com.samucatezu.pimbackend.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.samucatezu.pimbackend.constant.InsuranceType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "Insurances")
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Table(name = "insurance")
 public class Insurance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    private @NotNull String name;
-    private @NotNull String imageURL;
-    private @NotNull double price;
-    private @NotNull String description;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private InsuranceType type;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "insuranceCategory_id", nullable = false)
-    Category category;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
 
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", imageURL='" + imageURL + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
-    }
+    @Column(name = "price", nullable = false)
+    private Integer price;
+
+    @Column(name = "printable_details", nullable = false)
+    private String printableDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
 }
