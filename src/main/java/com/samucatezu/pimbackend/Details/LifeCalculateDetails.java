@@ -7,10 +7,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Builder
-public class LifeInsuranceDetails {
+public class LifeCalculateDetails {
 
-    private String rangeIncome;
-    private String age;
+    private Integer rangeIncome;
+    private Integer yearOfBirth;
+    private Integer insuranceTimeInYears;
     private String laborCamp;
 
 }

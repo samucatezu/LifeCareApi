@@ -2,10 +2,7 @@ package com.samucatezu.pimbackend.Services;
 
 
 import com.samucatezu.pimbackend.DTO.InsuranceDto;
-import com.samucatezu.pimbackend.Details.CarCalculateDetails;
-import com.samucatezu.pimbackend.Details.CarDetails;
-import com.samucatezu.pimbackend.Details.HouseCalculateDetails;
-import com.samucatezu.pimbackend.Details.HouseDetails;
+import com.samucatezu.pimbackend.Details.*;
 import com.samucatezu.pimbackend.Model.Insurance;
 import com.samucatezu.pimbackend.Model.User;
 import com.samucatezu.pimbackend.Repository.InsuranceRepository;
@@ -21,8 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
-import static com.samucatezu.pimbackend.constant.InsuranceType.CAR;
-import static com.samucatezu.pimbackend.constant.InsuranceType.HOUSE;
+import static com.samucatezu.pimbackend.constant.InsuranceType.*;
 
 @Service
 @RequiredArgsConstructor
@@ -71,6 +67,27 @@ public class BuyingService {
         insuranceRepository.save(houseInsurance);
         InsuranceDto insuranceDto = InsuranceDtoMapper.mapToInsuranceDisplayDto(houseInsurance);
         return insuranceDto;
+    }
+
+    public InsuranceDto buyLifeInsurance(LifeDetails details) {
+        LifeCalculateDetails CalculateDetails = CalculateDetailsMapper.mapToLifeCalculateDetails(details);
+        Integer price = Calculator.lifeInsuranceCalculator(CalculateDetails);
+        Integer time = details.getInsuranceTimeInYears();
+        String printableDetails = PrintableDetailsMapper.mapToLifePrintableDetails(details);
+        User user = loggedInUser.getUser();
+        log.info("Registering a new house insurance");
+        Insurance lifeInsurance = Insurance.builder()
+                .type(LIFE)
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusYears(time))
+                .price(price)
+                .printableDetails(printableDetails)
+                .user(user)
+                .build();
+        insuranceRepository.save(lifeInsurance);
+        InsuranceDto insuranceDto = InsuranceDtoMapper.mapToInsuranceDisplayDto(lifeInsurance);
+        return insuranceDto;
+
     }
 
 }

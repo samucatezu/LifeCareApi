@@ -2,6 +2,7 @@ package com.samucatezu.pimbackend.mapper;
 
 import com.samucatezu.pimbackend.Details.CarDetails;
 import com.samucatezu.pimbackend.Details.HouseDetails;
+import com.samucatezu.pimbackend.Details.LifeDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +27,16 @@ public class PrintableDetailsMapper {
                         + "\nZip Code: " + details.getZipCode()
                         + "\nConstruction Year: " + details.getConstructionYear()
                         + "\nBuilding Value: " + details.getBuildingValue();
+
+        }
+
+        public static String mapToLifePrintableDetails(LifeDetails details) {
+
+                return "\nTown: " + details.getTown()
+                        + "\nStreet: " + details.getStreet()
+                        + "\nZip Code: " + details.getZipCode()
+                        + "\nLabor camp: " + details.getLaborCamp()
+                        + "\nRange income: " + details.getRangeIncome();
 
         }
 

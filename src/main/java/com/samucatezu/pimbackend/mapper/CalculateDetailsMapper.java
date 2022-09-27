@@ -1,10 +1,7 @@
 package com.samucatezu.pimbackend.mapper;
 
 
-import com.samucatezu.pimbackend.Details.CarCalculateDetails;
-import com.samucatezu.pimbackend.Details.CarDetails;
-import com.samucatezu.pimbackend.Details.HouseCalculateDetails;
-import com.samucatezu.pimbackend.Details.HouseDetails;
+import com.samucatezu.pimbackend.Details.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,6 +26,15 @@ public class CalculateDetailsMapper {
                         .insuranceTimeInYears(details.getInsuranceTimeInYears())
                         .build();
 
+        }
+
+        public static LifeCalculateDetails mapToLifeCalculateDetails(LifeDetails details) {
+                return  LifeCalculateDetails.builder()
+                        .yearOfBirth(details.getYearOfBirth())
+                        .insuranceTimeInYears(details.getInsuranceTimeInYears())
+                        .rangeIncome(details.getRangeIncome())
+                        .laborCamp(details.getLaborCamp())
+                        .build();
         }
 
 }

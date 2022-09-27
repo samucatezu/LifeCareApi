@@ -4,6 +4,7 @@ package com.samucatezu.pimbackend.utils;
 
 import com.samucatezu.pimbackend.Details.CarCalculateDetails;
 import com.samucatezu.pimbackend.Details.HouseCalculateDetails;
+import com.samucatezu.pimbackend.Details.LifeCalculateDetails;
 
 import java.time.LocalDate;
 
@@ -53,6 +54,25 @@ public class Calculator {
                 Integer insuranceTime = details.getInsuranceTimeInYears();
 
                 return (yearCost + buildingValueCost) * insuranceTime;
+
+        }
+
+        public static Integer lifeInsuranceCalculator(LifeCalculateDetails details) {
+
+                if(details.getYearOfBirth() > currentYear || details.getYearOfBirth() < 1900)
+                        throw new IllegalArgumentException("Incorrect Year Of Birth!");
+
+                if(details.getRangeIncome() < 1000)
+                        throw new IllegalArgumentException("Incorrect Income!");
+
+                if(details.getInsuranceTimeInYears() < 1 || details.getInsuranceTimeInYears() > 10)
+                        throw new IllegalArgumentException("Incorrect Insurance Time!");
+
+                Integer yearCost = (currentYear - details.getYearOfBirth()) * 5;
+                Integer incomeCost = details.getRangeIncome() / 100;
+                Integer insuranceTime = details.getInsuranceTimeInYears();
+
+                return (yearCost + incomeCost) * insuranceTime;
 
         }
 
