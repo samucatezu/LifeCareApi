@@ -22,34 +22,26 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .paths(PathSelectors.regex("^(?!/(error).*$).*$"))
+                .build()
+                .apiInfo(metaData());
+    }
+
+    private ApiInfo metaData() {
+        return new ApiInfoBuilder()
+                .title("Spring Boot REST API")
+                .description("\"Security company REST API for sign-in, sign up and password reset\"")
+                .version("1.0.0")
+                .license("Apache License Version 2.0")
+                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+                .contact(new Contact("Samuel Barbosa Almeida", "https://github.com/samucatezu/", "barbosasamuel24@gmail.com"))
                 .build();
+    }
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }
 
-//    @Bean
-//    public Docket productApi() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.samucatezu.pimbackend"))
-//                .paths(regex("/.*"))
-//                .build()
-//                .apiInfo(metaData());
-//    }
-//    private ApiInfo metaData() {
-//        return new ApiInfoBuilder()
-//                .title("Spring Boot REST API")
-//                .description("\"Spring Boot REST API for sign-in, sign up and password reset\"")
-//                .version("1.0.0")
-//                .license("Apache License Version 2.0")
-//                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
-//                .contact(new Contact("Samuel Barbosa Almeida", "https://springframework.guru/about/", "barbosasamuel24@gmail.com"))
-//                .build();
-//    }
-//    @Override
-//    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("swagger-ui.html")
-//                .addResourceLocations("classpath:/META-INF/resources/");
-//
-//        registry.addResourceHandler("/webjars/**")
-//                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-//    }

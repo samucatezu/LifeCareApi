@@ -3,14 +3,11 @@ package com.samucatezu.pimbackend.Controller;
 import com.samucatezu.pimbackend.DTO.UserInDto;
 import com.samucatezu.pimbackend.Services.RegistrationService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class RegistrationController {
 
     private final RegistrationService registrationService;

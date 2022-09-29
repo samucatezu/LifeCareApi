@@ -4,6 +4,8 @@ package com.samucatezu.pimbackend.service;
 import com.samucatezu.pimbackend.DTO.InsuranceDto;
 import com.samucatezu.pimbackend.Details.CarDetails;
 import com.samucatezu.pimbackend.Details.HouseDetails;
+import com.samucatezu.pimbackend.Details.LifeCalculateDetails;
+import com.samucatezu.pimbackend.Details.LifeDetails;
 import com.samucatezu.pimbackend.Model.Insurance;
 import com.samucatezu.pimbackend.Model.User;
 import com.samucatezu.pimbackend.Repository.InsuranceRepository;
@@ -81,10 +83,10 @@ class BuyingServiceTest {
         void itShouldBuyHouseInsurance() {
 
                 HouseDetails houseDetails = HouseDetails.builder()
-                        .town("Manchester")
-                        .street("Queen Victoria Street")
+                        .town("Guaruja")
+                        .street("Leomil")
                         .houseNumber("238")
-                        .zipCode("M29")
+                        .zipCode("01311-000")
                         .constructionYear(1978)
                         .buildingValue(410000)
                         .insuranceTimeInYears(6)
@@ -99,8 +101,8 @@ class BuyingServiceTest {
                         .startDate(LocalDate.now())
                         .endDate(LocalDate.now().plusYears(6))
                         .price(31200)
-                        .printableDetails("\nTown: Manchester\nStreet: Queen Victoria Street\nHouse Number: 238"
-                                + "\nZip Code: M29\nConstruction Year: 1978\nBuilding Value: 410000")
+                        .printableDetails("\nTown: Guaruja\nStreet: Leomil\nHouse Number: 238"
+                                + "\nZip Code: 01311-000\nConstruction Year: 1978\nBuilding Value: 410000")
                         .user(user)
                         .build();
 
@@ -117,6 +119,49 @@ class BuyingServiceTest {
 
 
                 assertThat(buyingService.buyHouseInsurance(houseDetails)).isEqualTo(insuranceDto);
+
+        }
+
+        @Test
+        void itShouldBuyLifeInsurance() {
+
+                LifeDetails lifeDetails = LifeDetails.builder()
+                        .town("Santos")
+                        .street("Av Rangel Pestana")
+                        .zipCode("01311-000")
+                        .rangeIncome(5000)
+                        .yearOfBirth(2000)
+                        .insuranceTimeInYears(2)
+                        .laborCamp("Developer")
+                        .build();
+
+                User user = User.builder()
+                        .insurances(new ArrayList<>())
+                        .build();
+
+                Insurance lifeInsurance = Insurance.builder()
+                        .type(InsuranceType.LIFE)
+                        .startDate(LocalDate.now())
+                        .endDate(LocalDate.now().plusYears(2))
+                        .price(31200)
+                        .printableDetails("\nTown: Santos\nStreet: Av Rangel Pestana\n Zip Code: 01311-000"
+                                + "\n Labor camp: Developer\nRange Incomer: 5000\nYear of Birth: 2000")
+                        .user(user)
+                        .build();
+
+                InsuranceDto insuranceDto = InsuranceDto.builder()
+                        .type(InsuranceType.LIFE)
+                        .startDate(LocalDate.now())
+                        .endDate(LocalDate.now().plusYears(2))
+                        .price(4000)
+                        .build();
+
+
+                given(insuranceRepository.save(lifeInsurance)).willReturn(lifeInsurance);
+                given(loggedInUser.getUser()).willReturn(user);
+
+
+                assertThat(buyingService.buyLifeInsurance(lifeDetails)).isEqualTo(insuranceDto);
 
         }
 

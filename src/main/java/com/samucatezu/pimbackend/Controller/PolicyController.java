@@ -2,16 +2,14 @@ package com.samucatezu.pimbackend.Controller;
 
 import com.samucatezu.pimbackend.Services.PolicyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/policies")
+@CrossOrigin
 public class PolicyController {
 
         private final PolicyService policyService;

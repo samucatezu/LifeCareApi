@@ -48,19 +48,19 @@ public class UserServiceTest {
         void itShouldReturnAllUsers() {
 
                 User user1 = User.builder()
-                        .username("Karol654")
+                        .username("Samucatezu")
                         .build();
 
                 User user2 = User.builder()
-                        .username("Johnpou8")
+                        .username("ErikFazMolho")
                         .build();
 
                 User user3 = User.builder()
-                        .username("DiamondAxe4")
+                        .username("AleArrumaEstagio")
                         .build();
 
                 User user4 = User.builder()
-                        .username("GummyBear")
+                        .username("NetaoHamburguer")
                         .build();
 
                 List<User> userList = Arrays.asList(user1, user2, user3, user4);
@@ -77,17 +77,17 @@ public class UserServiceTest {
         void itShouldSaveNewUser() {
 
                 UserInDto userInDto = UserInDto.builder()
-                        .username("AppleCake998")
+                        .username("Burgao")
                         .build();
 
                 User user = User.builder()
-                        .username("AppleCake998")
+                        .username("Burgao")
                         .insurances(new ArrayList<>())
                         .roles(new ArrayList<>())
                         .build();
 
 
-                given(userRepository.findByUsername("AppleCake998")).willReturn(Optional.empty());
+                given(userRepository.findByUsername("Burgao")).willReturn(Optional.empty());
                 given(userRepository.save(user)).willReturn(user);
 
 
@@ -158,7 +158,7 @@ public class UserServiceTest {
 
                 User user = User.builder()
                         .id(3L)
-                        .username("AnthonyBigGuy")
+                        .username("Samucatezu")
                         .roles(new ArrayList<>())
                         .build();
 
@@ -185,7 +185,7 @@ public class UserServiceTest {
 
                 User user = User.builder()
                         .id(6L)
-                        .username("Adamek")
+                        .username("ENZO")
                         .roles(new ArrayList<>())
                         .build();
 
@@ -212,15 +212,15 @@ public class UserServiceTest {
         void itShouldThrowExistingUserException() {
 
                 UserInDto userInDto = UserInDto.builder()
-                        .username("Shark008")
+                        .username("NetaoQueroPizza")
                         .build();
 
                 User user = User.builder()
-                        .username("Shark008")
+                        .username("NetaoQueroPizza")
                         .build();
 
 
-                given(userRepository.findByUsername("Shark008")).willReturn(Optional.of(user));
+                given(userRepository.findByUsername("NetaoQueroPizza")).willReturn(Optional.of(user));
 
 
                 assertThrows(ExistingEntityException.class, () -> userService.saveUser(userInDto));

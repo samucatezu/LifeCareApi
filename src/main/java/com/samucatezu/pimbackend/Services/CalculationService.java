@@ -2,6 +2,7 @@ package com.samucatezu.pimbackend.Services;
 
 import com.samucatezu.pimbackend.Details.CarCalculateDetails;
 import com.samucatezu.pimbackend.Details.HouseCalculateDetails;
+import com.samucatezu.pimbackend.Details.LifeCalculateDetails;
 import com.samucatezu.pimbackend.Details.InsurancePrice;
 import com.samucatezu.pimbackend.utils.Calculator;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,11 @@ public class CalculationService {
     public InsurancePrice houseInsuranceCalculation(HouseCalculateDetails details) {
         log.info("Calculation performed");
         return new InsurancePrice(Calculator.houseInsuranceCalculator(details));
+    }
+
+    public InsurancePrice lifeInsuranceCalculation(LifeCalculateDetails details) {
+        log.info("Calculation performed");
+        return new InsurancePrice(Calculator.lifeInsuranceCalculator(details));
     }
 
 }
