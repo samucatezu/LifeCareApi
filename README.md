@@ -22,7 +22,7 @@ Baixe o código em sua máquina e teste o aplicativo, importando-o como um proje
 - [JDK 1.11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 - [Maven 3](https://maven.apache.org/download.cgi)
 - [MySQL](https://dev.mysql.com/downloads/installer/)
-- [RDS](https://aws.amazon.com/pt/rds/)
+
 
 ### Build & Run
 
