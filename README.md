@@ -10,14 +10,14 @@ Aplicativo Spring Boot, no qual o usuário pode calcular o valor de um determina
 * **Application Servicer** : Apache Tomcat Server
 * **Database** : MySQL Database
 
-## Getting Started
+## Getting Started (Começando)
 (EN-US)
 Download the code on your machine and test the application, importing it as a maven project. Follow these steps for the command-line option:
 
 (PT-BR)
 Baixe o código em sua máquina e teste o aplicativo, importando-o como um projeto maven. Siga estas etapas para a opção de linha de comando:
 
-### Prerequisites
+### Prerequisites (Pré-requisitos)
 
 - [JDK 1.11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 - [Maven 3](https://maven.apache.org/download.cgi)
@@ -39,12 +39,15 @@ Baixe o código em sua máquina e teste o aplicativo, importando-o como um proje
 ### Login
 
 #### To login, enter the username and password for the account with selected role:
+#### Para fazer login, insira o nome de usuário e a senha da conta com a função selecionada:
 |   Role  	| Username 	| Password 	|
 |:-------:	|:--------:	|:--------:	|
 |   User  	|   user   	|   user   	|
 | Manager 	|  manager 	|  manager 	|
 |  Admin  	|   admin  	|   admin  	|
 
-## Explore Rest APIs
+## Explore API
 
 To explore documentation, run the application and go to `http://localhost:5000/swagger-ui.html`
+
+### :warning: To use the e-mail functionality, you need to setup your credentials in these files MailSenderConfiguration and application.yml
