@@ -1,4 +1,4 @@
-# Life Care Seguros
+# LifeCare insurance company
 (EN-US)
 Spring Boot Application, in which the user can calculate the amount of a given insurance, and then purchase it and print the policy in PDF form. When new user registers an account, the application sends an e-mail verification link necessary to use its functionality.
 
