@@ -3,7 +3,7 @@
 Spring Boot Application, in which the user can calculate the amount of a given insurance, and then purchase it and print the policy in PDF form. When new user registers an account, the application sends an e-mail verification link necessary to use its functionality.
 
 (PT-BR)
-Aplicativo Spring Boot, no qual o usuário pode calcular o valor de um determinado seguro, adquiri-lo e imprimir a apólice em formato PDF. Quando um novo usuário registra uma conta, o aplicativo envia um link de verificação de e-mail necessário para acessar o aplicativo.
+Aplicativo Spring Boot, no qual o usuário pode calcular o valor de um determinado seguro, adquiri-lo e imprimir a apólice em formato PDF. Quando um novo usuário registra uma conta, o aplicativo envia um link de verificação de e-mail necessário para completar o cadastro.
 ## Tools and Technologies
 
 * **Technology** : Java 11, Spring (Boot, MVC, Data JPA) , Lombok, JUnit 5, Mockito, Maven, AWS
